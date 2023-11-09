@@ -1,0 +1,17 @@
+{
+  "name": "lolapi-project",
+  "version": "1.0.0",
+  "description": "A project taken on to sharpen skills on React.js &amp; Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "Kiefer Johnson & Stephan Ota-Demers",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "proxy": "http://localhost:3001"
+}
