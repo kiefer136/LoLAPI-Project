@@ -1,21 +1,10 @@
 import logo from './teemo.png';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { response } from 'express';
 
 function App() {
 
-  const [backendData, setBackendData] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data);
-      }
-    )
-  }, [])
+  const [backendData, setBackendData] = useState([""]);
 
   const useInput = (initialValue) => {
     const [value, setValue] = useState(initialValue);
@@ -32,8 +21,21 @@ function App() {
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log("summoner Name", summonerName.value);
-    console.log("password", tagLine.value);
+
+    fetch(`/api?summonerName=${summonerName.value}&tagLine=${tagLine.value}`).then(
+      response => response.json()
+    ).then(
+      data => {
+        let dataParsed = JSON.parse(data.message);
+        console.log(dataParsed);
+        if (dataParsed !== null) {
+          dataParsed = dataParsed.puuid
+        } else {
+          dataParsed = "Incorrect summoner name or tag";
+        }
+        setBackendData(dataParsed);
+      }
+    )
 };
 
   const summonerName = useInput("");
@@ -51,6 +53,8 @@ function App() {
           <input name="tagLine" value={tagLine.value} defaultValue="Tag Line" onChange={tagLine.onChange}></input>
           <button type="submit">Submit</button>
         </form> 
+        <h2>User PUUID: </h2>
+        <p>{backendData}</p>
       </header>
     </div>
   );
