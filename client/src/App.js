@@ -1,33 +1,56 @@
-import logo from './logo.svg';
+import logo from './teemo.png';
 import './App.css';
 import { useEffect, useState } from 'react';
+import { response } from 'express';
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  const [backendData, setBackendData] = useState([{}]);
 
   useEffect(() => {
-    console.log (`The count is ${count}`);
+    fetch("/api").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data);
+      }
+    )
+  }, [])
 
-    return () => {
-      console.log("I am being cleaned up");
+  const useInput = (initialValue) => {
+    const [value, setValue] = useState(initialValue);
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    return {
+      value,
+      onChange: handleChange
     }
-  }, [count]);
+  };
+
+  const submitForm = (event) => {
+    event.preventDefault();
+    console.log("summoner Name", summonerName.value);
+    console.log("password", tagLine.value);
+};
+
+  const summonerName = useInput("");
+  const tagLine = useInput("");
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>{count}</h1>
         <p>
-          Hello
+          Enter your Summoner Name & Tagline
         </p>
-        <button onClick={() => setCount(count - 1)}>
-          Decrement
-        </button>
-        <button onClick={() => setCount(count + 1)}>
-          Increment
-        </button>
+        <form onSubmit={submitForm}>
+          <input name="summonerName" value={summonerName.value} defaultValue="Summoner Name" onChange={summonerName.onChange}></input>
+          <input name="tagLine" value={tagLine.value} defaultValue="Tag Line" onChange={tagLine.onChange}></input>
+          <button type="submit">Submit</button>
+        </form> 
       </header>
     </div>
   );
