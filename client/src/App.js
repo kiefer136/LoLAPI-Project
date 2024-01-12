@@ -1,6 +1,7 @@
 import logo from './teemo.png';
 import './App.css';
 import { useEffect, useState } from 'react';
+import Header from './components/header';
 
 function App() {
 
@@ -43,11 +44,12 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <Header></Header>
+      <div className='logo-wrapper-background'>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <h3>
           Enter your Summoner Name & Tagline
-        </p>
+        </h3>
         <form onSubmit={submitForm}>
           <input name="summonerName" value={summonerName.value} defaultValue="Summoner Name" onChange={summonerName.onChange}></input>
           <input name="tagLine" value={tagLine.value} defaultValue="Tag Line" onChange={tagLine.onChange}></input>
@@ -55,7 +57,7 @@ function App() {
         </form> 
         <h2>User PUUID: </h2>
         <p>{backendData}</p>
-      </header>
+      </div>
     </div>
   );
 }

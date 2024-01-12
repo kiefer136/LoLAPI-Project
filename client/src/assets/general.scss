@@ -1,0 +1,67 @@
+// Color Variables
+
+$blue: #004E7C;
+$cloud: #F3F3F3;
+$purple-tinged-grey: #283747;
+$pure-purple: #3C1874;
+$light-purple: #5d0fdb;
+
+// General Styles
+
+.App {
+    background-color: #282c34;
+    height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+
+// Header Styles
+
+#page-header {
+    text-align: left;
+    background-color: $purple-tinged-grey;
+    height: 2em;
+    border-bottom: 1px solid $blue;
+    padding: 1em;
+    display:flex; 
+    justify-content: space-between;
+
+    .nav-list-wrapper {
+        align-self: center;
+
+        .nav-list {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+        .nav-list-item {
+            color: white;
+            padding: 0 1em;
+        }
+    }
+}
+
+.site-logo {
+    margin: 0;
+    color: $cloud;
+    .site-logo-secondary {
+        color: $light-purple;
+    }
+}
+
+.logo-wrapper-background {
+    background-image: url('../images/forest-background.jpg');
+
+    h4,h3, h2 {
+        padding: 15px 0;
+        color: $cloud;
+    }
+}
